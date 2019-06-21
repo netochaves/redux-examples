@@ -1,3 +1,3 @@
-import countReducer from "../reducers/countReducer"
+import countReducer from "./countReducer"
 
 export { countReducer }
