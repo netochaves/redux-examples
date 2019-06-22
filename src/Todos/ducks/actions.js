@@ -10,4 +10,9 @@ const toggleTodo = id => ({
   id
 })
 
-export { addTodo, toggleTodo }
+const setVisibilityFilter = filter => ({
+  type: types.SET_VISIBILITY_FILTER,
+  filter
+})
+
+export { addTodo, toggleTodo, setVisibilityFilter }

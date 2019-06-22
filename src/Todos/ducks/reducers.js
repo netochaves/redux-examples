@@ -1,4 +1,5 @@
 import * as types from "./types"
+import * as filters from "../filters"
 import { combineReducers } from "redux"
 
 const todosReducer = (state = [], action) => {
@@ -26,8 +27,18 @@ const todosReducer = (state = [], action) => {
   }
 }
 
+const filterReducer = (state = filters.SHOW_ALL, action) => {
+  switch (action.type) {
+    case types.SET_VISIBILITY_FILTER:
+      return action.filter
+    default:
+      return state
+  }
+}
+
 const reducer = combineReducers({
-  todosReducer
+  todosReducer,
+  filterReducer
 })
 
 export default reducer
