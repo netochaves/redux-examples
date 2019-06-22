@@ -1,10 +1,22 @@
 import React from "react"
 import { connect } from "react-redux"
 import { bindActionCreators } from "redux"
-import { addTodo, toggleTodo, setVisibilityFilter } from "./ducks/actions"
+import {
+  addTodo,
+  toggleTodo,
+  setVisibilityFilter,
+  removeTodo
+} from "./ducks/actions"
 import * as filters from "./filters"
 
-const Todos = ({ filter, todos, addTodo, toggleTodo, setVisibilityFilter }) => {
+const Todos = ({
+  filter,
+  todos,
+  addTodo,
+  toggleTodo,
+  setVisibilityFilter,
+  removeTodo
+}) => {
   let input
   return (
     <div>
@@ -27,6 +39,12 @@ const Todos = ({ filter, todos, addTodo, toggleTodo, setVisibilityFilter }) => {
           style={{ textDecoration: todo.completed ? "line-through" : "none" }}
         >
           {todo.name}
+          <button
+            style={{ marginLeft: 10 }}
+            onClick={() => removeTodo(todo.id)}
+          >
+            remove
+          </button>
         </li>
       ))}
       <br />
@@ -71,7 +89,10 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ addTodo, toggleTodo, setVisibilityFilter }, dispatch)
+  bindActionCreators(
+    { addTodo, toggleTodo, setVisibilityFilter, removeTodo },
+    dispatch
+  )
 
 export default connect(
   mapStateToProps,

@@ -22,6 +22,8 @@ const todosReducer = (state = [], action) => {
             }
           : t
       )
+    case types.REMOVE_TODO:
+      return state.filter(t => t.id !== action.id)
     default:
       return state
   }
