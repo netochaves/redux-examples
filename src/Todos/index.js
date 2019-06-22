@@ -1,72 +1,45 @@
 import React from "react"
 import { connect } from "react-redux"
 import { bindActionCreators } from "redux"
-import {
-  addTodo,
-  toggleTodo,
-  setVisibilityFilter,
-  removeTodo
-} from "./ducks/actions"
+import { AddTodo, Todo, Link } from "./components"
+import { toggleTodo, setVisibilityFilter, removeTodo } from "./ducks/actions"
 import * as filters from "./filters"
 
 const Todos = ({
   filter,
   todos,
-  addTodo,
   toggleTodo,
   setVisibilityFilter,
   removeTodo
 }) => {
-  let input
   return (
-    <div>
-      <input ref={node => (input = node)} />
-      <button
-        onClick={event => {
-          event.preventDefault()
-          addTodo(input.value)
-          input.value = ""
-        }}
-      >
-        Add Todo
-      </button>
+    <>
+      <AddTodo />
       {todos.map(todo => (
-        <li
-          key={todo.id}
-          onClick={() => {
-            toggleTodo(todo.id)
-          }}
-          style={{ textDecoration: todo.completed ? "line-through" : "none" }}
-        >
-          {todo.name}
-          <button
-            style={{ marginLeft: 10 }}
-            onClick={() => removeTodo(todo.id)}
-          >
-            remove
-          </button>
-        </li>
+        <Todo
+          {...todo}
+          onToggleTodo={() => toggleTodo(todo.id)}
+          onRemoveTodo={() => removeTodo(todo.id)}
+        />
       ))}
       <br />
-      <button
-        disabled={filter === filters.SHOW_ALL}
-        onClick={() => setVisibilityFilter(filters.SHOW_ALL)}
-      >
-        Show All
-      </button>
-      <button
-        disabled={filter === filters.SHOW_ACTIVE}
-        onClick={() => setVisibilityFilter(filters.SHOW_ACTIVE)}
-      >
-        Show Actives
-      </button>
-      <button
-        disabled={filter === filters.SHOW_COMPLETED}
-        onClick={() => setVisibilityFilter(filters.SHOW_COMPLETED)}
-      >
-        Show Completed
-      </button>
-    </div>
+      <div />
+      <Link
+        active={filter === filters.SHOW_ALL}
+        onClickFilter={() => setVisibilityFilter(filters.SHOW_ALL)}
+        text="Show All"
+      />
+      <Link
+        active={filter === filters.SHOW_ACTIVE}
+        onClickFilter={() => setVisibilityFilter(filters.SHOW_ACTIVE)}
+        text="Show Active"
+      />
+      <Link
+        active={filter === filters.SHOW_COMPLETED}
+        onClickFilter={() => setVisibilityFilter(filters.SHOW_COMPLETED)}
+        text="Show Completed"
+      />
+    </>
   )
 }
 
@@ -89,10 +62,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators(
-    { addTodo, toggleTodo, setVisibilityFilter, removeTodo },
-    dispatch
-  )
+  bindActionCreators({ toggleTodo, setVisibilityFilter, removeTodo }, dispatch)
 
 export default connect(
   mapStateToProps,
