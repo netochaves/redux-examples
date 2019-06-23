@@ -1,4 +1,5 @@
 import React from "react"
+import PropTypes from "prop-types"
 
 const Todo = ({ id, name, completed, onToggleTodo, onRemoveTodo }) => {
   return (
@@ -16,4 +17,13 @@ const Todo = ({ id, name, completed, onToggleTodo, onRemoveTodo }) => {
     </>
   )
 }
+
+Todo.propTypes = {
+  id: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
+  completed: PropTypes.bool.isRequired,
+  onRemoveTodo: PropTypes.func.isRequired,
+  onToggleTodo: PropTypes.func.isRequired
+}
+
 export default Todo

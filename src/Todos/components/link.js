@@ -1,4 +1,5 @@
 import React from "react"
+import PropTypes from "prop-types"
 
 const Link = ({ active, onClickFilter, text }) => {
   return (
@@ -9,4 +10,11 @@ const Link = ({ active, onClickFilter, text }) => {
     </>
   )
 }
+
+Link.propTypes = {
+  active: PropTypes.bool.isRequired,
+  onClickFilter: PropTypes.func.isRequired,
+  text: PropTypes.string.isRequired
+}
+
 export default Link

@@ -6,7 +6,7 @@ import { bindActionCreators } from "redux"
 import { setVisibilityFilter } from "../ducks/actions"
 
 const Footer = ({ filter, setVisibilityFilter }) => (
-  <>
+  <div>
     <Link
       active={filter === filters.SHOW_ALL}
       onClickFilter={() => setVisibilityFilter(filters.SHOW_ALL)}
@@ -22,7 +22,7 @@ const Footer = ({ filter, setVisibilityFilter }) => (
       onClickFilter={() => setVisibilityFilter(filters.SHOW_COMPLETED)}
       text="Show Completed"
     />
-  </>
+  </div>
 )
 
 const mapStateToProps = state => ({
