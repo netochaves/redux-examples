@@ -6,7 +6,7 @@ import { addTodo } from "../ducks/actions"
 const AddTodo = ({ addTodo }) => {
   let input
   return (
-    <div>
+    <>
       <input ref={node => (input = node)} />
       <button
         onClick={event => {
@@ -17,7 +17,7 @@ const AddTodo = ({ addTodo }) => {
       >
         Add Todo
       </button>
-    </div>
+    </>
   )
 }
 

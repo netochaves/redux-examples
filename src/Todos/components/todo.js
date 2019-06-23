@@ -2,7 +2,7 @@ import React from "react"
 
 const Todo = ({ id, name, completed, onToggleTodo, onRemoveTodo }) => {
   return (
-    <div>
+    <>
       <li
         key={id}
         onClick={onToggleTodo}
@@ -13,7 +13,7 @@ const Todo = ({ id, name, completed, onToggleTodo, onRemoveTodo }) => {
           remove
         </button>
       </li>
-    </div>
+    </>
   )
 }
 export default Todo

@@ -6,7 +6,7 @@ import { bindActionCreators } from "redux"
 import { getVisibleTodos } from "../utils.js"
 
 const TodoList = ({ todos, toggleTodo, removeTodo }) => (
-  <div>
+  <>
     {todos.map(todo => (
       <Todo
         {...todo}
@@ -14,7 +14,7 @@ const TodoList = ({ todos, toggleTodo, removeTodo }) => (
         onRemoveTodo={() => removeTodo(todo.id)}
       />
     ))}
-  </div>
+  </>
 )
 
 const mapStateToProps = state => ({
